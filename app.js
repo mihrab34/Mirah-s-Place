@@ -47,6 +47,9 @@ app.use("/slots", slotsRoute);
 const failedBookingsRoute = require("./routes/failedBookingRoutes");
 app.use("/failed-bookings", failedBookingsRoute);
 
+const usersRoute = require("./routes/usersRoute");
+app.use("/login", usersRoute);
+
 // Handling Errors
 app.use((req, res, next) => {
   res.status(400);

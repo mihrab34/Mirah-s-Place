@@ -4,13 +4,15 @@
     <br>
     <form method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <label for="">
-            Slot Date: <input type="date" name="date" required>
-        </label>
-        <br>
-        <label for="">
-            slot quantity: <input type="number" name="quantity" placeholder="Maximum of 10" required>
-        </label>
+        <div class="form-group">
+            <label for=""> Slot Date:</label>
+            <input type="date" name="date" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for=""> Slot Quantity:</label>
+            <input type="number" name="quantity" class="form-control" placeholder="Maximum of 10" required>
+        </div>
         <button type="submit" class="btn">Add</button>
     </form>
 </section>

@@ -48,7 +48,7 @@ const failedBookingsRoute = require("./routes/failedBookingRoutes");
 app.use("/failed-bookings", failedBookingsRoute);
 
 const usersRoute = require("./routes/usersRoute");
-app.use("/login", usersRoute);
+app.use("/users", usersRoute);
 
 // Handling Errors
 app.use((req, res, next) => {

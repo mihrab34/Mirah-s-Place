@@ -1,4 +1,4 @@
-<section class="section1 bookings">
+<section class="bookings">
     <h1>Available Slot</h1>
     <strong><a href="/slots/add" rel="noopener noreferrer">Create new Slot</a></strong>
 </section>
@@ -9,7 +9,7 @@
     <%= success %>
 </div>
 <% } %>
-<section>
+<section class="section2">
     <% if(slots) { %>
     <% slots.forEach(slot => { %>
     <h1>Date: <%= slot.date %> </h1>

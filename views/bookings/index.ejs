@@ -1,0 +1,18 @@
+<section class="section1 bookings">
+    <h1>Bookings</h1>
+    <strong><a href="/bookings/add" rel="noopener noreferrer">Book an appointment</a></strong>
+</section>
+
+<section class="section2">
+    <% if(bookings) { %>
+    <% bookings.forEach(booking => { %>
+    <div>
+        <h1>Client Name:<%= booking.user.name %> </h1>
+        <h3>Phone Number:<%= booking.user.phone_number %> </h3>
+        <h3>Booking Date:<%= booking.booking_date %> </h3>
+    </div>
+
+    <!-- <hr> -->
+    <% }) %>
+    <% } %>
+</section>

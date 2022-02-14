@@ -1,0 +1,24 @@
+<section class="section1 bookings">
+    <h1>Please enter your name and password</h1>
+    <form action="/bookings/update-user" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div>
+            <label for="name">Name:
+                <input type="text" placeholder="Enter Name" name="name" id="name">
+            </label>
+        </div>
+        <div>
+            <label for="phone_number">Phone Number:
+                <input type="phone" name="phone_number" id="phone_number" value="<%= phone_number %>">
+            </label>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+                <input type="password" placeholder="Enter Password" id="password" name="password">
+            </label>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,16 @@
+<section class="section1">
+    <h1>Add New Slots</h1>
+    <br>
+    <br>
+    <form method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <label for="">
+            Slot Date: <input type="date" name="date" required>
+        </label>
+        <br>
+        <label for="">
+            slot quantity: <input type="number" name="quantity" placeholder="Maximum of 10" required>
+        </label>
+        <button type="submit" class="btn">Add</button>
+    </form>
+</section>

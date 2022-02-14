@@ -1,0 +1,12 @@
+<section class="section1 bookings">
+    <h1>Failed Bookings</h1>
+</section>
+<section>
+    <% if(failedBookings) { %>
+    <% failedBookings.forEach(failedBooking => { %>
+    
+    <h3>Booking Date:<%= failedBooking.booking_date %> </h3>
+    <hr>
+    <% }) %>
+    <% } %>
+</section>

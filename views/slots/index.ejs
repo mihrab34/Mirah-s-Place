@@ -1,0 +1,19 @@
+<section class="section1 bookings">
+    <h1>Available Slot</h1>
+    <strong><a href="/slots/add" rel="noopener noreferrer">Create new Slot</a></strong>
+</section>
+<br>
+<br>
+<% if (success.length > 0) { %>
+<div class="alert-success">
+    <%= success %>
+</div>
+<% } %>
+<section>
+    <% if(slots) { %>
+    <% slots.forEach(slot => { %>
+    <h1>Date: <%= slot.date %> </h1>
+    <h3>Available Quantity: <%= slot.quantity %></h3>
+    <% }) %>
+    <% } %>
+</section>

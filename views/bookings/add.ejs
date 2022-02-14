@@ -1,0 +1,23 @@
+<section class="section1">
+    <h1>Book An Appointment</h1>
+    <br>
+    <br>
+    <% if (success.length > 0) { %>
+        <div class="alert-success">
+            <%= success %> 
+        </div>
+    <% } %> 
+    <form method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <br>
+        <label for="phone">
+            Phone Number: 
+        </label>
+        <input type="phone" name="phone_number" id="phone">
+        <br>
+        <label for="">
+           Booking Date: <input type="date" name="booking_date" id="">
+        </label><br>
+        <button type="submit" class="btn">Book</button>
+    </form>
+</section>

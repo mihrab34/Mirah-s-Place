@@ -31,6 +31,10 @@ app.use(
 app.use(flash());
 app.use(csrfProtection);
 
+// log in user route
+const usersRoute = require("./routes/usersRoute");
+app.use("/", usersRoute);
+
 // homepage router mount
 const homeRoute = require("./routes/pagesRoute");
 app.use("/", homeRoute);
@@ -47,8 +51,7 @@ app.use("/slots", slotsRoute);
 const failedBookingsRoute = require("./routes/failedBookingRoutes");
 app.use("/failed-bookings", failedBookingsRoute);
 
-const usersRoute = require("./routes/usersRoute");
-app.use("/users", usersRoute);
+
 
 // Handling Errors
 app.use((req, res, next) => {

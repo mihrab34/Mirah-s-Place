@@ -14,7 +14,7 @@ exports.add = async (req, res) => {
 };
 
 exports.save = async (req, res) => {
-  const currentDate = new Date(req.body.date).toLocaleDateString().slice(0, 10);
+  const currentDate = new Date(req.body.date).toDateString();
   // console.log(currentDate);
 
   new_slots = new Slots({

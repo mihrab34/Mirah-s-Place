@@ -7,9 +7,9 @@
     <% if(bookings) { %>
     <% bookings.forEach(booking => { %>
     <div>
-        <h1>Client Name:<%= booking.user.name %> </h1>
-        <h3>Phone Number:<%= booking.user.phone_number %> </h3>
-        <h3>Booking Date:<%= booking.booking_date %> </h3>
+        <p>Client Name:<%= booking.user.name %> </p>
+        <p>Phone Number:<%= booking.user.phone_number %> </p>
+        <p>Booking Date:<%= booking.booking_date.toDateString() %> </p>
     </div>
 
     <!-- <hr> -->

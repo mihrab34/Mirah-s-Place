@@ -12,8 +12,8 @@
 <section class="section2">
     <% if(slots) { %>
     <% slots.forEach(slot => { %>
-    <h1>Date: <%= slot.date %> </h1>
-    <h3>Available Quantity: <%= slot.quantity %></h3>
+    <p>Date: <%= slot.date.toDateString() %> </p>
+    <p>Available Quantity: <%= slot.quantity %></p>
     <% }) %>
     <% } %>
 </section>

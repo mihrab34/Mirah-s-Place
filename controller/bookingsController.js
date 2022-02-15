@@ -3,6 +3,11 @@ const Slots = require("../model/slotModel");
 const FailedBookings = require("../model/failedBooking");
 const Users = require("../model/userModel");
 
+let feedback = {
+  type: "",
+  message: "",
+};
+
 exports.index = async (req, res) => {
   const bookings = await Bookings.find({}).populate("user");
   res.render("bookings/index", { title: "Bookings", bookings });
@@ -11,24 +16,24 @@ exports.index = async (req, res) => {
 exports.add = async (req, res) => {
   res.render("bookings/add", {
     title: "Add Bookings",
+    feedback: feedback.message,
     success: req.flash("success"),
     csrfToken: req.csrfToken(),
   });
 };
 
 exports.save = async (req, res) => {
-  // getting booking date and the next date after booking date
-  const booking_date = req.body.booking_date;
-  const next_date = new Date(booking_date);
-  next_date.setDate(next_date.getDate() + 1);
-
-  // check booking date with available slot date
-  const available_slot = await Slots.findOne()
-    .where("date")
-    .gte(new Date(booking_date))
-    .lt(new Date(next_date));
-
   try {
+    // getting booking date and the next date after booking date
+    const booking_date = req.body.booking_date;
+    const next_date = new Date(booking_date);
+    next_date.setDate(next_date.getDate() + 1);
+
+    // check booking date with available slot date
+    const available_slot = await Slots.findOne()
+      .where("date")
+      .gte(new Date(booking_date))
+      .lt(new Date(next_date));
     // getUsers with phone_number
     let phone_number = req.body.phone_number;
     let user = await Users.findOne({ phone_number: phone_number });
@@ -66,10 +71,10 @@ exports.save = async (req, res) => {
         );
 
         if (!user.name) {
-          req.flash("success", "Please enter your name and password");
           res.render("bookings/user", {
             title: "Enter Name",
             phone_number,
+            feedback: "please enter your name and password",
             csrfToken: req.csrfToken(),
           });
         }

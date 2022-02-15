@@ -1,6 +1,6 @@
 const slides = document.querySelectorAll(".page-section .home-image");
 
-const nextImageDelay = 3000;
+const nextImageDelay = 5000;
 let currentCounter = 0;
 
 slides[currentCounter].style.opacity = 1;

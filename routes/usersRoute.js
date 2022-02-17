@@ -8,7 +8,7 @@ const User = require("../model/userModel");
 passport.use(
   new LocalStrategy(async function verify(username, password, done) {
     const user = await User.findOne({phone_number: username})
-    console.log(user);
+    // console.log(user);
     if(user) {
       if (user.password === password) {
         return done(null, user); // verification successful
@@ -20,12 +20,17 @@ passport.use(
 
 const checkAuthenticated = (req,res,next) => {
   res.locals.isAuthenticated = false;
-  if (req.isAuthenticated()) {
-    res.locals.isAuthenticated = true;
-    next();
+  res.locals.whiteListed = false;
+  if(req.path === '/') {
+    res.locals.whiteListed = true;
   }else {
-    res.redirect("/login");
+    if (req.isAuthenticated()) {
+      res.locals.isAuthenticated = true;
+    } else {
+      return res.redirect("/login");
+    }
   }
+  next();
 }
 
 
@@ -48,6 +53,7 @@ router.post(
   passport.authenticate("local", { failureRedirect: "/login" }),
   controller.authenticateLogin
 );
+router.get("/logout")
 
 router.use(checkAuthenticated);
 

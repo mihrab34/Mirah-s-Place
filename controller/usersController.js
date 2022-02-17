@@ -6,6 +6,10 @@ exports.login =  (req, res) => {
 };
 
 exports.authenticateLogin = (req, res) => {
-  console.log(res);
+  // console.log(res);
   res.redirect("/");
 };
+
+exports.logout = (req, res) => {
+  // req.logout();
+}

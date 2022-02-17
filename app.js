@@ -41,7 +41,7 @@ app.use("/", homeRoute);
 
 // bookings router mount
 const bookingsRoute = require("./routes/bookingsRoute");
-app.use("/bookings",  bookingsRoute);
+app.use("/bookings", bookingsRoute);
 
 // slots router mount
 const slotsRoute = require("./routes/slotsRoute");
@@ -50,8 +50,6 @@ app.use("/slots", slotsRoute);
 // failedBookings router Mount
 const failedBookingsRoute = require("./routes/failedBookingRoutes");
 app.use("/failed-bookings", failedBookingsRoute);
-
-
 
 // Handling Errors
 app.use((req, res, next) => {

@@ -57,9 +57,9 @@ body {
 
 .title {
     color: rgb(212, 126, 86);
-    margin: 15em 0 5em 0;
+    margin:  0 5em ;
     font-family: 'Source Sans 3', sans-serif;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .section1 {
@@ -73,6 +73,10 @@ body {
     font-family: 'Source Sans 3', sans-serif;
     font-weight: 700;
     font-size: 1.2em;
+}
+
+.section1 span {
+    color: red;
 }
 
 .bookings {
@@ -97,6 +101,6 @@ body {
     font-size: 1.5em;
     border: 2px solid rgb(212, 126, 86);
     border-radius: 5px;
-    padding: 0.3em 5em;
-    margin: 1em 0 2em 5.5em;
+    padding: 0.3em 7em;
+    margin: 1em 0 2em 3.5em;
 }

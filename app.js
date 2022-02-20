@@ -31,6 +31,14 @@ app.use(
 app.use(flash());
 app.use(csrfProtection);
 
+// setting up flash as a middleware
+// app.use((req, res, next) => {
+//   res.locals.success = req.flash("success");
+//   res.locals.error = req.flash("error");
+//   next();
+// });
+
+
 // log in user route
 const usersRoute = require("./routes/usersRoute");
 app.use("/", usersRoute);

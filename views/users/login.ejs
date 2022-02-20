@@ -1,12 +1,16 @@
-<div class="title text-center">
+<div class="title text-center mt-5 mb-5">
     <h1>LOGIN</h1>
 </div>
-<section class="section1">
+<section class="section1 mt-5">
+    <% if(message !== 'undefined') { %>
+       <span><%= message %></span>
+    <% } %>
     <form action="" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="form-group mx-5 my-5">
             <label for="username">Phone Number:</label>
-            <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" required>
+            <input type="text" name="username" id="username" class="form-control" placeholder="Enter Phone Number"
+                autofocus required>
         </div>
         <div class="form-group my-5 mx-5">
             <label for="password">Password:</label>

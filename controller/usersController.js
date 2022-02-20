@@ -1,12 +1,13 @@
 exports.login =  (req, res) => {
-  res.render("users/login", {
-    title: "Login Page",
-    csrfToken: req.csrfToken(),
-  });
+  const message = req.flash().error
+    res.render("users/login", {
+      title: "Login Page",
+      message,
+      csrfToken: req.csrfToken(),
+    });
 };
 
 exports.authenticateLogin = (req, res) => {
-  // console.log(res);
   res.redirect("/");
 };
 

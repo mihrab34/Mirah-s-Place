@@ -4,11 +4,7 @@
 </div>
 <%  } %>
 
-<div class=" bookings text-center">
-    <h1>Please enter your name and password</h1>
-</div>
 <section class="section1">
-
     <form action="/bookings/update-user" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="form-group">

@@ -52,6 +52,7 @@ exports.save = async (req, res) => {
       user: user._id,
       booking_date: booking_date,
       slot: available_slot._id,
+      service: req.body.services
     });
 
     const failed_booking = new FailedBookings({

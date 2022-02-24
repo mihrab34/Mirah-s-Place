@@ -49,6 +49,7 @@ const blockFailedAttempt = (req,res, next) => {
 const checkAuthenticated = (req, res, next) => {
   res.locals.isAuthenticated = false;
   res.locals.whiteListed = false;
+  res.locals.user = req.user || {};
   if (req.path === "/") {
     res.locals.whiteListed = true;
     if (req.isAuthenticated()) {
@@ -57,10 +58,12 @@ const checkAuthenticated = (req, res, next) => {
   } else {
     if (req.isAuthenticated()) {
       res.locals.isAuthenticated = true;
+      res.locals.user = req.user || {};
     } else {
       return res.redirect("/login");
     }
   }
+  // console.log(res.locals.user);
   next();
 };
 

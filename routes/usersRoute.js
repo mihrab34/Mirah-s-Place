@@ -3,31 +3,19 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const controller = require("../controller/usersController");
 const User = require("../model/userModel");
-const ExpressBrute = require("express-brute");
-const MemcachedStore = require("express-brute-memcached");
-const moment = require("moment");
-let store;
+const bcrypt = require("bcrypt");
 
 // user authentication outsourced to passport.js
 passport.use(
-  new LocalStrategy({ passReqToCallback: true }, async function verify(
-    req,
-    username,
-    password,
-    done
-  ) {
+  new LocalStrategy({ passReqToCallback: true }, async function verify(req, username, password, done) {
     const user = await User.findOne({ phone_number: username });
     if (user) {
-      if (user.password === password) {
+      if(await bcrypt.compare(password, user.password)){
         return done(null, user); // verification successful
       }
     }
     failedLoginAttempt(req);
-    return done(
-      null,
-      false,
-      req.flash("error", "Invalid username or password")
-    ); // verification failed
+    return done(null, false, req.flash("error", "Invalid username or password")); // verification failed
   })
 );
 

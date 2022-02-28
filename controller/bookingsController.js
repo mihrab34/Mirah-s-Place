@@ -2,6 +2,7 @@ const Bookings = require("../model/bookingModel");
 const Slots = require("../model/slotModel");
 const FailedBookings = require("../model/failedBooking");
 const Users = require("../model/userModel");
+const bcrypt = require("bcrypt")
 
 let feedback = {
   type: "",
@@ -95,10 +96,11 @@ exports.save = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   let phone_number = req.body.phone_number;
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
   const user = await Users.findOne({ phone_number: phone_number });
   (user.name = req.body.name.toUpperCase()),
-    (user.password = req.body.password);
+    (user.password = hashedPassword);
   await Users.updateOne(
     { phone_number: phone_number },
     { $set: { name: user.name, password: user.password } }

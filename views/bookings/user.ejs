@@ -1,10 +1,9 @@
-<% if(feedback) { %>
-<div class="alert alert-success alert-dismiss section1">
-    <%= feedback %>
-</div>
-<%  } %>
-
-<section class="section1">
+<section class="section1 mt-5">
+    <% if(feedback) { %>
+    <div class="alert alert-success alert-dismiss section1">
+        <%= feedback %>
+    </div>
+    <%  } %>
     <form action="/bookings/update-user" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="form-group">

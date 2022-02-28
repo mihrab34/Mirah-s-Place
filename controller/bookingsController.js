@@ -52,19 +52,20 @@ exports.save = async (req, res) => {
       user: user._id,
       booking_date: booking_date,
       slot: available_slot._id,
-      service: req.body.services
+      service: req.body.services,
     });
 
     const failed_booking = new FailedBookings({
       user: user._id,
       booking_date: booking_date,
     });
-
+    // check for if there is available_slot
     if (available_slot) {
       let slot = available_slot;
 
       if (slot.quantity > 0) {
         await booking.save();
+        // deduct slot by -1 after a succesful save
         let quantity = slot.quantity - 1;
         const updateQuantity = await Slots.updateOne(
           { _id: slot._id },
@@ -93,7 +94,6 @@ exports.save = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-  // console.log(req.body);
   let phone_number = req.body.phone_number;
 
   const user = await Users.findOne({ phone_number: phone_number });
@@ -105,5 +105,5 @@ exports.updateUser = async (req, res) => {
   );
 
   req.flash("success", "THANKS FOR BOOKING " + user.name);
-  res.redirect("/bookings/add");
+  res.redirect("/bookings");
 };

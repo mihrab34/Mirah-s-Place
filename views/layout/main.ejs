@@ -16,7 +16,7 @@
     <header>
         <% if ((typeof isAuthenticated !== 'undefined' && isAuthenticated) || (typeof whiteListed !== 'undefined' && whiteListed)){ %>
         <nav class="navbar fixed-top navbar-expand-lg">
-            <span><a class="navbar-brand mx-5" href="/">Mira's</a></span>
+            <span><a class="navbar-brand mx-5" href="/">MIRAH'S</a></span>
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -25,16 +25,11 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto ">
-                    <li class="nav-item mx-4"><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item mx-4"><a href="/bookings" class="nav-link">Bookings</a></li>
-                    <% if(typeof user !== undefined && user.role !== 'user')  { %>
-                        <li class="nav-item mx-4"><a href="/slots" class="nav-link">Slots</a></li>
-                    <%}%> 
-                    <% if(!isAuthenticated) { %>
-                        <li class="nav-item"><a href="/login" class="nav-link">Log In</a></li>
-                   <% } else { %> 
-                    <li class="nav-item"><a href="/logout" class="nav-link">Log Out</a></li>
-                    <% } %> 
+                    <% if(typeof navigations !== undefined)  { %>
+                        <% navigations.forEach(nav => { %>
+                            <li class="nav-item mx-4"><a href="<%= nav.url %>" class="nav-link"><%= nav.name %></a></li>
+                        <% }) %> 
+                    <%}%>    
                 </ul>
             </div>
         </nav>

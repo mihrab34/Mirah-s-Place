@@ -23,7 +23,11 @@ passport.use(
       }
     }
     failedLoginAttempt(req);
-    return done(null,false,req.flash("error", "Invalid username or password")); // verification failed
+    return done(
+      null,
+      false,
+      req.flash("error", "Invalid username or password")
+    ); // verification failed
   })
 );
 
@@ -35,21 +39,23 @@ const failedLoginAttempt = (req) => {
   }
 };
 
-const blockFailedAttempt = (req,res, next) => {
+const blockFailedAttempt = (req, res, next) => {
   const failedCount = req.session.failedCount;
   res.locals.access = false;
-  if(failedCount > 4) {
+  if (failedCount > 4) {
     res.locals.access = true;
-    req.flash("error", "Access denied due to several login attempts. Try again in 5 minutes");
+    req.flash(
+      "error",
+      "Access denied due to several login attempts. Try again in 5 minutes"
+    );
   }
-  // console.log(res.locals);
   next();
 };
 
+// middleware to check if the user is logged in and whiteListed page
 const checkAuthenticated = (req, res, next) => {
   res.locals.isAuthenticated = false;
   res.locals.whiteListed = false;
-  res.locals.user = req.user || {};
   if (req.path === "/") {
     res.locals.whiteListed = true;
     if (req.isAuthenticated()) {
@@ -58,15 +64,37 @@ const checkAuthenticated = (req, res, next) => {
   } else {
     if (req.isAuthenticated()) {
       res.locals.isAuthenticated = true;
-      res.locals.user = req.user || {};
     } else {
       return res.redirect("/login");
     }
   }
-  // console.log(res.locals.user);
   next();
 };
 
+// middleware to display navigations according to role
+const displayNav = (req, res, next) => {
+  let nav = [{ name: "Home", url: "/" }];
+  if (req.user) {
+    if (req.user.role === "user") {
+      nav.push({ name: "Book A Date", url: "/bookings" });
+    } else {
+      nav.push(
+        { name: "Slots", url: "/slots" },
+        { name: "Users", url: "/users" }
+      );
+    }
+  }
+  if(req.isAuthenticated()) {
+    nav.push({name: "Logout", url: "/logout"})
+  }else {
+    nav.push({name: "Login", url: "/login"})
+  }
+
+  res.locals.navigations = nav;
+  next();
+};
+
+// initialize passport with session
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -91,5 +119,6 @@ router.post(
 );
 router.use(checkAuthenticated);
 router.get("/logout", controller.logout);
+router.use(displayNav)
 
 module.exports = router;

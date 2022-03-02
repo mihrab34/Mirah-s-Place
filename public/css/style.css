@@ -29,6 +29,10 @@ body {
     font-family: 'Source Sans 3', sans-serif;
 }
 
+.active {
+    background: red;
+}
+
 .navbar-nav .nav-link:hover {
     color: rgb(212, 126, 86);
     text-decoration: underline #fff;
@@ -46,8 +50,8 @@ body {
     top: 0;
     z-index: -1;
     opacity: 0;
-    /* transition: position 0.7s ease-in-out; */
-    width: 100%;
+    transition: position 0.7s ease-in-out;
+    /* width: 100%; */
 }
 
 .home-image img {

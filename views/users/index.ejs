@@ -1,0 +1,13 @@
+<section class="booking container-fluid">
+    <p><a href="/users/add">Add User</a></p>
+    <% if(users) { %>
+    <% users.forEach((user) => { %>
+    <p>Name:<strong><%= user.name %></strong></p>
+    <p>Phone Number:<strong><%= user.phone_number %></strong></p>
+    <p>Role: <strong><%= user.role %></strong></p>
+    <hr>
+    <%}) %>
+    <% } %>
+    
+</section>
+ 

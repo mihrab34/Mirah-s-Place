@@ -1,0 +1,22 @@
+<section>
+    <h1>Add User</h1>
+    <form action="" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <section class="form-group">
+            <label for="username">Name:</label>
+            <input id="username" name="name" type="text" class="form-control" placeholder="Enter Name" required
+                autofocus>
+        </section>
+        <section class="form-group">
+            <label for="current-password">Phone Number:</label>
+            <input id="current-password" name="username" type="text" class="form-control" placeholder="Enter Number"
+                required>
+        </section>
+        <section class="form-group">
+            <label for="current-password">Password:</label>
+            <input id="current-password" name="password" type="password" class="form-control"
+                placeholder="Enter Password" required>
+        </section>
+        <button type="submit">Sign in</button>
+    </form>
+</section>

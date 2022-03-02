@@ -64,9 +64,12 @@ const displayNav = (req, res, next) => {
   let nav = [{ name: "Home", url: "/" }];
   if (req.user) {
     if (req.user.role === "user") {
-      nav.push({ name: "Book A Date", url: "/bookings" });
+      nav.push(
+        { name: "Book A Date", url: "/bookings" }
+      );
     } else {
       nav.push(
+        { name: "Book A Date", url: "/bookings" },
         { name: "Slots", url: "/slots" },
         { name: "Users", url: "/users" }
       );
@@ -105,8 +108,13 @@ router.post(
   }),
   controller.authenticateLogin
 );
-router.use(checkAuthenticated);
 router.get("/logout", controller.logout);
-router.use(displayNav)
-
+router.use(checkAuthenticated);
+router.use(displayNav);
+// user pages route
+router.get("/users", controller.index);
+router.get("/users/add", controller.add);
+router.post("/users/add", controller.create);
+router.get("/users/edit/:id", controller.edit);
+router.post("/users/edit/:id", controller.update);
 module.exports = router;

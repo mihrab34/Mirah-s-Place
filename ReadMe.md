@@ -6,7 +6,7 @@ This is a salon/spa booking web app where clients can book their preferred date 
 **Quick Start**
 
 ```
-$ git clone h
+$ git clone https://github.com/mihrab34/Mirah-s-Place.git
 $ cd 
 $ npm install
 ```
